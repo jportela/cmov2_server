@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Name:</b>
+  <%= @property.name %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= image_tag @property.photo.url(:normal) %>
+</p>
+
+<p>
   <b>Type:</b>
   <%= @property.type %>
 </p>

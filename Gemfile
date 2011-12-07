@@ -6,6 +6,8 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem "paperclip", "~> 2.4"
+gem "speedy_c2dm"
 
 
 # Gems used only for assets and not required

@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+    <th>Name</th>
+    <th>Photo</th>
     <th>Type</th>
     <th>Address</th>
     <th>City</th>
@@ -15,6 +17,8 @@
 
 <% @properties.each do |property| %>
   <tr>
+    <td><%= property.name %></td>
+    <td><%= image_tag property.photo.url(:normal) %></td>
     <td><%= property.type %></td>
     <td><%= property.address %></td>
     <td><%= property.city %></td>
