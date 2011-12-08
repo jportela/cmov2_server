@@ -80,4 +80,54 @@ class PropertiesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def short
+    @property = Property.find(params[:id])
+    formatted_json = {
+        :id => @property.id,
+        :name => @property.name,
+        :type => @property.ptype,
+        :price => @property.price,
+        :photo => @property.photo.url(:small)
+      }
+    respond_to do |format|
+      format.json { render :json => formatted_json }
+    end    
+  end
+  
+  def long
+    @property = Property.find(params[:id])
+    formatted_json = {
+        :id => @property.id,
+        :name => @property.name,
+        :type => @property.ptype,
+        :price => @property.price,
+        :photo => @property.photo.url(:normal),
+        :address => @property.address,
+        :city => @property.city,
+        :description => @property.description,
+        :created_at => @property.created_at,
+        :state => @property.state 
+      }
+    respond_to do |format|
+      format.json { render :json => formatted_json }
+    end    
+  end
+  
+  def items
+    formatted_json = []
+    Property.all.each { |p| 
+      formatted_json << {
+        :id => p.id,
+        :name => p.name,
+        :type => p.ptype,
+        :price => p.price,
+        :photo => p.photo.url(:small)
+      }
+    }
+    respond_to do |format|
+      format.json { render :json => formatted_json }
+    end    
+  end
+  
 end

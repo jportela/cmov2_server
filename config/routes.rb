@@ -1,5 +1,13 @@
 Cmov2Server::Application.routes.draw do
-  resources :properties
+  resources :properties do 
+    member do
+      get 'short'
+      get 'long'
+    end
+    collection do
+      get 'items'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
