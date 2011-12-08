@@ -1,4 +1,10 @@
 Cmov2Server::Application.routes.draw do
+  resources :users do
+    collection do
+      post 'update_registration'
+    end
+  end
+
   resources :properties do 
     member do
       get 'short'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208012011) do
+ActiveRecord::Schema.define(:version => 20111208174253) do
 
   create_table "properties", :force => true do |t|
     t.string   "ptype"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(:version => 20111208012011) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "name"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "registration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
   end
 
 end
