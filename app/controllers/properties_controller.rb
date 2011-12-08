@@ -44,6 +44,22 @@ class PropertiesController < ApplicationController
 
     respond_to do |format|
       if @property.save
+        users = User.all
+        users.each { |u|
+          options = {
+            :registration_id => u.registration_id,
+            :message => "New property added to Property Market!",
+            :id => @property.id,
+            :name => @property.name,
+            :collapse_key => @property.id.to_s
+          }
+          puts options.inspect
+          response = SpeedyC2DM::API.send_notification(options)
+          puts response.inspect
+        }
+        
+
+        
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
         format.json { render json: @property, status: :created, location: @property }
       else
