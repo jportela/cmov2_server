@@ -134,7 +134,7 @@ class PropertiesController < ApplicationController
   def items
     user = User.find_by_email(params[:user_email])
     
-    properties = Property.where("id NOT IN (?)", user.properties.map(&:id).join(','))
+    properties = Property.find_by_sql ['SELECT "properties".* FROM "properties" WHERE id NOT IN (SELECT "discarded_properties"."property_id" FROM "discarded_properties" WHERE "discarded_properties"."user_id" = ?)', user.id ]
     
     formatted_json = []
     properties.each { |p| 
