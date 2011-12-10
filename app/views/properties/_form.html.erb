@@ -20,8 +20,8 @@
     <%= f.file_field :photo %>
   </div>
   <div class="field">
-    <%= f.label :ptype %><br />
-    <%= f.text_field :ptype %>
+    <%= f.label :type %><br />
+    <%= select("property", "ptype", Property::TYPES) %>
   </div>
   <div class="field">
     <%= f.label :address %><br />
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.text_field :state %>
+    <%= select("property", "state", Property::STATES) %>
   </div>
   <div class="actions">
     <%= f.submit %>
