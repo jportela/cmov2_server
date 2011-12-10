@@ -132,8 +132,12 @@ class PropertiesController < ApplicationController
   end
   
   def items
+    user = User.find_by_email(params[:user_email])
+    
+    properties = Property.where("id NOT IN (?)", user.properties.map(&:id).join(','))
+    
     formatted_json = []
-    Property.all.each { |p| 
+    properties.each { |p| 
       formatted_json << {
         :id => p.id,
         :name => p.name,
@@ -145,6 +149,15 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       format.json { render :json => formatted_json }
     end    
+  end
+  
+  def discard
+    user = User.find_by_email(params[:user_email])
+    dp = DiscardedProperty.new(:user_id => user.id, :property_id => params[:id])
+    dp.save
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
   
 end
