@@ -51,6 +51,7 @@ class PropertiesController < ApplicationController
             :message => "New property added to Property Market!",
             :id => @property.id,
             :name => @property.name,
+            :ptype => @property.ptype,
             :collapse_key => @property.id.to_s
           }
           puts options.inspect
