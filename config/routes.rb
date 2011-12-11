@@ -9,6 +9,7 @@ Cmov2Server::Application.routes.draw do
     member do
       get 'short'
       get 'long'
+      post 'discard'
     end
     collection do
       get 'items'
